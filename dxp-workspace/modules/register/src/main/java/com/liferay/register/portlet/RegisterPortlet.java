@@ -5,11 +5,12 @@ import com.liferay.register.constants.RegisterPortletKeys;
 import java.io.IOException;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.util.ParamUtil;
 
 import javax.portlet.Portlet;
 import javax.portlet.PortletException;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -32,10 +33,14 @@ import org.osgi.service.component.annotations.Component;
 	service = Portlet.class
 )
 public class RegisterPortlet extends MVCPortlet {
-	@Override
-	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
-			throws IOException, PortletException {
-		System.out.println("Welcome to register page");
-		super.doView(renderRequest, renderResponse);
+	
+	public void registerSubmit(ActionRequest request, ActionResponse response) 
+	 throws IOException, PortletException {
+		String name = ParamUtil.getString(request, "name");
+		String surname = ParamUtil.getString(request, "surname");
+		String bdate = ParamUtil.getString(request, "bdate");
+		String email = ParamUtil.getString(request, "email");
+		
+		System.out.println("=== Passed "+name+" : "+surname+" : "+bdate+" : "+email);
 	}
 }
