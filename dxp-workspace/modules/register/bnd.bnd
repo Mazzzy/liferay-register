@@ -1,0 +1,4 @@
+Bundle-Name: register
+Bundle-SymbolicName: com.liferay.register
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.register.constants
