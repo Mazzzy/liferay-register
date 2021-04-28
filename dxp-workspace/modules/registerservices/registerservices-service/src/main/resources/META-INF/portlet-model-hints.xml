@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.register.services.model.Register">
+		<field name="rid" type="long" />
+		<field name="name" type="String" />
+		<field name="surname" type="String" />
+		<field name="bdate" type="Date" />
+		<field name="email" type="String" />
+	</model>
+</model-hints>

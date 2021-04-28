@@ -1,0 +1,10 @@
+Bundle-Name: registerservices-api
+Bundle-SymbolicName: com.liferay.register.services.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.register.services.exception,\
+	com.liferay.register.services.model,\
+	com.liferay.register.services.service,\
+	com.liferay.register.services.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../registerservices-service/service.xml
