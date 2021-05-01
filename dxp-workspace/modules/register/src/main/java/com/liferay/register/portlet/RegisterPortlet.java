@@ -139,6 +139,10 @@ public class RegisterPortlet extends MVCPortlet {
 			e.printStackTrace();
 		}
 		register.setEmail(email);
+		
+		java.sql.Timestamp regDate = new java.sql.Timestamp(new java.util.Date().getTime());
+		register.setRegdate(regDate);
+		
 		_registerLocalService.addRegister(register);
 		
 		System.out.println("=== Succesfully Added to DB "+name+" : "+surname+" : "+bdate+" : "+email);

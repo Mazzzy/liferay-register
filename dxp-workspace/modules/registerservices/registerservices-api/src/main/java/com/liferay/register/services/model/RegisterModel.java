@@ -128,4 +128,18 @@ public interface RegisterModel extends BaseModel<Register> {
 	 */
 	public void setEmail(String email);
 
+	/**
+	 * Returns the regdate of this register.
+	 *
+	 * @return the regdate of this register
+	 */
+	public Date getRegdate();
+
+	/**
+	 * Sets the regdate of this register.
+	 *
+	 * @param regdate the regdate of this register
+	 */
+	public void setRegdate(Date regdate);
+
 }

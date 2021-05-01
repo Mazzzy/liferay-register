@@ -38,6 +38,7 @@ public class RegisterSoap implements Serializable {
 		soapModel.setSurname(model.getSurname());
 		soapModel.setBdate(model.getBdate());
 		soapModel.setEmail(model.getEmail());
+		soapModel.setRegdate(model.getRegdate());
 
 		return soapModel;
 	}
@@ -131,10 +132,19 @@ public class RegisterSoap implements Serializable {
 		_email = email;
 	}
 
+	public Date getRegdate() {
+		return _regdate;
+	}
+
+	public void setRegdate(Date regdate) {
+		_regdate = regdate;
+	}
+
 	private long _rid;
 	private String _name;
 	private String _surname;
 	private Date _bdate;
 	private String _email;
+	private Date _regdate;
 
 }

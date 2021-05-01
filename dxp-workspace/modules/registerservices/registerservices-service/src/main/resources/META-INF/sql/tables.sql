@@ -3,5 +3,6 @@ create table Register (
 	name VARCHAR(75) null,
 	surname VARCHAR(75) null,
 	bdate DATE null,
-	email VARCHAR(75) null
+	email VARCHAR(75) null,
+	regdate DATE null
 );

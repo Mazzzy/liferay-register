@@ -47,6 +47,7 @@ public class RegisterWrapper
 		attributes.put("surname", getSurname());
 		attributes.put("bdate", getBdate());
 		attributes.put("email", getEmail());
+		attributes.put("regdate", getRegdate());
 
 		return attributes;
 	}
@@ -81,6 +82,12 @@ public class RegisterWrapper
 
 		if (email != null) {
 			setEmail(email);
+		}
+
+		Date regdate = (Date)attributes.get("regdate");
+
+		if (regdate != null) {
+			setRegdate(regdate);
 		}
 	}
 
@@ -122,6 +129,16 @@ public class RegisterWrapper
 	@Override
 	public long getPrimaryKey() {
 		return model.getPrimaryKey();
+	}
+
+	/**
+	 * Returns the regdate of this register.
+	 *
+	 * @return the regdate of this register
+	 */
+	@Override
+	public Date getRegdate() {
+		return model.getRegdate();
 	}
 
 	/**
@@ -187,6 +204,16 @@ public class RegisterWrapper
 	@Override
 	public void setPrimaryKey(long primaryKey) {
 		model.setPrimaryKey(primaryKey);
+	}
+
+	/**
+	 * Sets the regdate of this register.
+	 *
+	 * @param regdate the regdate of this register
+	 */
+	@Override
+	public void setRegdate(Date regdate) {
+		model.setRegdate(regdate);
 	}
 
 	/**

@@ -9,5 +9,6 @@
         <column name="surname" type="String"></column>
         <column name="bdate" type="Date"></column>
         <column name="email" type="String"></column>
+        <column name="regdate" type="Date"></column>
     </entity>
 </service-builder>

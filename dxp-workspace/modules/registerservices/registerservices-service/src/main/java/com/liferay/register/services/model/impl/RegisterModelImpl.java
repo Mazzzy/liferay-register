@@ -65,7 +65,7 @@ public class RegisterModelImpl
 	public static final Object[][] TABLE_COLUMNS = {
 		{"rid", Types.BIGINT}, {"name", Types.VARCHAR},
 		{"surname", Types.VARCHAR}, {"bdate", Types.TIMESTAMP},
-		{"email", Types.VARCHAR}
+		{"email", Types.VARCHAR}, {"regdate", Types.TIMESTAMP}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -77,10 +77,11 @@ public class RegisterModelImpl
 		TABLE_COLUMNS_MAP.put("surname", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("bdate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("email", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("regdate", Types.TIMESTAMP);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table Register (rid LONG not null primary key,name VARCHAR(75) null,surname VARCHAR(75) null,bdate DATE null,email VARCHAR(75) null)";
+		"create table Register (rid LONG not null primary key,name VARCHAR(75) null,surname VARCHAR(75) null,bdate DATE null,email VARCHAR(75) null,regdate DATE null)";
 
 	public static final String TABLE_SQL_DROP = "drop table Register";
 
@@ -253,6 +254,9 @@ public class RegisterModelImpl
 		attributeGetterFunctions.put("email", Register::getEmail);
 		attributeSetterBiConsumers.put(
 			"email", (BiConsumer<Register, String>)Register::setEmail);
+		attributeGetterFunctions.put("regdate", Register::getRegdate);
+		attributeSetterBiConsumers.put(
+			"regdate", (BiConsumer<Register, Date>)Register::setRegdate);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -345,6 +349,20 @@ public class RegisterModelImpl
 		_email = email;
 	}
 
+	@Override
+	public Date getRegdate() {
+		return _regdate;
+	}
+
+	@Override
+	public void setRegdate(Date regdate) {
+		if (_columnOriginalValues == Collections.EMPTY_MAP) {
+			_setColumnOriginalValues();
+		}
+
+		_regdate = regdate;
+	}
+
 	public long getColumnBitmask() {
 		if (_columnBitmask > 0) {
 			return _columnBitmask;
@@ -404,6 +422,7 @@ public class RegisterModelImpl
 		registerImpl.setSurname(getSurname());
 		registerImpl.setBdate(getBdate());
 		registerImpl.setEmail(getEmail());
+		registerImpl.setRegdate(getRegdate());
 
 		registerImpl.resetOriginalValues();
 
@@ -516,6 +535,15 @@ public class RegisterModelImpl
 			registerCacheModel.email = null;
 		}
 
+		Date regdate = getRegdate();
+
+		if (regdate != null) {
+			registerCacheModel.regdate = regdate.getTime();
+		}
+		else {
+			registerCacheModel.regdate = Long.MIN_VALUE;
+		}
+
 		return registerCacheModel;
 	}
 
@@ -594,6 +622,7 @@ public class RegisterModelImpl
 	private String _surname;
 	private Date _bdate;
 	private String _email;
+	private Date _regdate;
 
 	public <T> T getColumnValue(String columnName) {
 		Function<Register, Object> function = _attributeGetterFunctions.get(
@@ -627,6 +656,7 @@ public class RegisterModelImpl
 		_columnOriginalValues.put("surname", _surname);
 		_columnOriginalValues.put("bdate", _bdate);
 		_columnOriginalValues.put("email", _email);
+		_columnOriginalValues.put("regdate", _regdate);
 	}
 
 	private transient Map<String, Object> _columnOriginalValues;
@@ -649,6 +679,8 @@ public class RegisterModelImpl
 		columnBitmasks.put("bdate", 8L);
 
 		columnBitmasks.put("email", 16L);
+
+		columnBitmasks.put("regdate", 32L);
 
 		_columnBitmasks = Collections.unmodifiableMap(columnBitmasks);
 	}

@@ -61,7 +61,7 @@ public class RegisterCacheModel
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{rid=");
 		sb.append(rid);
@@ -73,6 +73,8 @@ public class RegisterCacheModel
 		sb.append(bdate);
 		sb.append(", email=");
 		sb.append(email);
+		sb.append(", regdate=");
+		sb.append(regdate);
 		sb.append("}");
 
 		return sb.toString();
@@ -112,6 +114,13 @@ public class RegisterCacheModel
 			registerImpl.setEmail(email);
 		}
 
+		if (regdate == Long.MIN_VALUE) {
+			registerImpl.setRegdate(null);
+		}
+		else {
+			registerImpl.setRegdate(new Date(regdate));
+		}
+
 		registerImpl.resetOriginalValues();
 
 		return registerImpl;
@@ -124,6 +133,7 @@ public class RegisterCacheModel
 		surname = objectInput.readUTF();
 		bdate = objectInput.readLong();
 		email = objectInput.readUTF();
+		regdate = objectInput.readLong();
 	}
 
 	@Override
@@ -152,6 +162,8 @@ public class RegisterCacheModel
 		else {
 			objectOutput.writeUTF(email);
 		}
+
+		objectOutput.writeLong(regdate);
 	}
 
 	public long rid;
@@ -159,5 +171,6 @@ public class RegisterCacheModel
 	public String surname;
 	public long bdate;
 	public String email;
+	public long regdate;
 
 }

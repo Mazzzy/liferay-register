@@ -7,5 +7,6 @@
 		<field name="surname" type="String" />
 		<field name="bdate" type="Date" />
 		<field name="email" type="String" />
+		<field name="regdate" type="Date" />
 	</model>
 </model-hints>
